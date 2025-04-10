@@ -9,11 +9,13 @@ inputs:
     default: 'dummy'
 
 runs:
-  using: 'docker'
-  image: 'docker://ghcr.io/abdelhaouari/tfdefectga:v1'
+  using: "docker"
+  image: "docker://ghcr.io/abdelhaouari/tfdefectga:v1"
+  entrypoint: "python"
   args:
-    - '--model'
-    - '${{ inputs.model }}'
+    - "app/action_runner.py"
+    - "--model"
+    - "${{ inputs.model }}"
 
 branding:
   icon: 'activity'
