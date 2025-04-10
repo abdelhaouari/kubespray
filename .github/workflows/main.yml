@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: 6d683c98a3204bcc43e2707a1123d866081ed07d
-          fetch-depth: 2
+          fetch-depth: 1
       
       - name: 🚀 Lancer TFDefectGA
         uses: TFDefect/TFDefectGA@v1.0.3
