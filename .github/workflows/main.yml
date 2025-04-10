@@ -1,4 +1,4 @@
-name: Analyse Terraform avec TFDefectGA 🚨🧠
+name: Analyse Terraform avec TFDefectGA 🧠
 
 on:
   push:
@@ -7,27 +7,30 @@ on:
   pull_request:
     paths:
       - "**.tf"
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 jobs:
   tfdefect-analysis:
     runs-on: ubuntu-latest
-    steps:
-      - name: 📦 Checkout le code du repo forké
-        uses: actions/checkout@v3
 
-      - name: 🚀 Lancer TFDefectGA (release v1.0.3)
-        uses: TFDefect/TFDefectGA@v1.0.3
+    steps:
+      - name: Cloner le dépôt
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: 🚀 Lancer TFDefectGA (local)
+        uses: ./
         with:
           model: randomforest
 
-      - name: 🗂️ Sauvegarder le rapport HTML
+      - name: 🧾 Sauvegarder le rapport HTML
         uses: actions/upload-artifact@v4
         with:
           name: rapport-tfdefectga
           path: out/reports/*.html
 
-      - name: 📁 Sauvegarder defect_history.json
+      - name: 💾 Sauvegarder defect_history.json
         uses: actions/upload-artifact@v4
         with:
           name: historique-defauts
